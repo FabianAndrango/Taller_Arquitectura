@@ -441,8 +441,8 @@ chart.update();
 }
 
 function updateCPU(valor){
-	const cteRam=document.getElementById("CPU-value");
-	cteRam.textContent=valor ;
+	const cteCPU=document.getElementById("CPU-value");
+	cteCPU.textContent=valor ;
 }
 
 function updateRAM(VALOR){
@@ -451,10 +451,34 @@ function updateRAM(VALOR){
 }
 
 function updateDISCO(VALOR){
-	const constRam=document.getElementById("DISCO-value");
-	constRam.textContent=VALOR
+	const constDisco=document.getElementById("DISCO-value");
+	constDisco.textContent=VALOR
 }
 function updateRED(VALOR){
-	const constRam=document.getElementById("RED-value");
-	constRam.textContent=VALOR
+	const constRED=document.getElementById("RED-value");
+	constRED.textContent=VALOR
+}
+function updateOS(VALOR){
+	const constOS=document.getElementById("SistemaOperativo");
+	constOS.textContent=VALOR
+}
+function updateVersion(VALOR){
+	const constVersion=document.getElementById("Version");
+	constVersion.textContent=VALOR
+}
+function updateArquitectura(VALOR){
+	const constArquitectura=document.getElementById("Arquitectura");
+	constArquitectura.textContent=VALOR
+}
+function updateRAM2(VALOR){
+	const constRam2=document.getElementById("RAM");
+	constRam2.textContent=VALOR
+}
+function updateAlmacenamiento(VALOR){
+	const constAlmacenamiento=document.getElementById("Almacenamiento");
+	constAlmacenamiento.textContent=VALOR
+}
+function updateProcesador(VALOR){
+	const constProcesador=document.getElementById("Procesador");
+	constProcesador.textContent=VALOR
 }

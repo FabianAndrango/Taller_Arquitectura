@@ -32,9 +32,22 @@ client.onMessageArrived = function (message) {
 		let dataMemoria = dataFormat.Memoria;
 		let dataDisco = dataFormat.Disco;
         let dataRed=dataFormat.RED;
+		let dataOS=dataFormat.OS;
+		let dataVersion=dataFormat.Version;
+		let dataArquitectura=dataFormat.Arquitectura;
+		let dataRAM=dataFormat.RAM;
+		let dataAlmacenamiento=dataFormat.Almacenamiento;
+		let dataProcesador=dataFormat.Procesador;
+		console.log(dataOS)
+		console.log(dataVersion)
+		console.log(dataArquitectura)
+		console.log(dataRAM)
+		console.log(dataAlmacenamiento)
+		console.log(dataProcesador)
 		console.log(dataCPU);
 		console.log(dataDisco);
 		console.log(dataMemoria);
+		console.log(dataRed)
 		//console.log(parseFloat(dataFormat.value));
 
 		//Cargar datos CPU , Memoria y Almacenamiento
@@ -68,6 +81,12 @@ client.onMessageArrived = function (message) {
 			updateDISCO(dataDisco.toExponential(2));
 			updateRAM(dataMemoria);
 			updateRED(dataRed.toExponential(2));
+			updateOS(dataOS);
+			updateVersion(dataVersion);
+			updateArquitectura(dataArquitectura);
+			updateRAM2(dataRAM);
+			updateAlmacenamiento(dataAlmacenamiento);
+			updateProcesador(dataProcesador);
 		} else {
 			console.log("dataDisco no está definido o no tiene un valor válido.");
 		}

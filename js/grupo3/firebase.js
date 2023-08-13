@@ -4,17 +4,17 @@
 
 $(document).ready(function () {
 	const config = {
-		apiKey: "AIzaSyB4XD-AIzaSyDUAEKVhvQV4g9xk5uefVGAPpRJwPFZTDs",
-		authDomain: "presion-a3041.firebaseapp.com",
-		databaseURL: "https://presion-a3041-default-rtdb.firebaseio.com/",
-		projectId: "presion-a3041",
-		storageBucket: "presion-a3041.appspot.com",
-		messagingSenderId: "752009347781",
-		appId: "1:752009347781:web:7dc65ecf2f5bc204fe26ac",
+		apiKey: "AIzaSyCKE8G95SI6GUPMOLltxMXePSifVGAebos",
+		authDomain: "arquitectura--grupo-3.firebaseapp.com",
+		databaseURL: "https://arquitectura--grupo-3-default-rtdb.firebaseio.com",
+		projectId: "arquitectura--grupo-3",
+		storageBucket: "arquitectura--grupo-3.appspot.com",
+		messagingSenderId: "637437041091",
+		appId: "1:637437041091:web:c878a9cd799bcf94e60576",
 	};
 	firebase.initializeApp(config); //inicializamos firebase
 	var db = firebase.database();
-	var coleccionProductos = db.ref().child("presiones");
+	var coleccionProductos = db.ref().child("Estadisticas_CPU");
 	var dataSet = []; //array para guardar los valores de los campos inputs del form
 	var table = $("#tablaProductos").DataTable({
 		pageLength: 5,
@@ -37,8 +37,10 @@ $(document).ready(function () {
 			datos.key,
 			datos.child("fecha").val(),
 			datos.child("hora").val(),
-			datos.child("presionSistolica").val(),
-			datos.child("presionDiastocia").val(),
+			datos.child("CPU").val(),
+			datos.child("Memoria").val(),
+			datos.child("Disco").val(),
+			datos.child("RED").val(),
 		];
 		table.rows.add([dataSet]).draw();
 	});

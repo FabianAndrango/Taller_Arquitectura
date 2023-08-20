@@ -57,6 +57,8 @@
     initMqtt();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
   <style>
      /* Estilos para el botón de PDF */
      button.pdf-button {
@@ -72,6 +74,22 @@
             cursor: pointer;
         }
   </style>
+
+  <style>
+    /* Estilos para el botón de Excel */
+    button.excel-button {
+           background-color: #185D10 ;
+           color: white;
+           border: none;
+           padding: 10px 20px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 16px;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+ </style>
 
 </head>
 
@@ -392,7 +410,7 @@
             </div>
             <button class="pdf-button"  onclick="PDF()"><i class="fas fa-file-pdf"></i> Exportar a PDF</button>
             &nbsp; <!-- Espacio en blanco -->
-            <button class="pdf-button"  onclick="PDF()"><i class="fas fa-file-excel"></i> Exportar a PDF</button>
+            <button class="excel-button"  onclick="Excel()"><i class="fas fa-file-excel"></i> Exportar a Excel</button>
             &nbsp; <!-- Espacio en blanco -->
             <button class="pdf-button"  onclick="PDF()"><i class="fas fa-print"></i> Exportar a PDF</button>
             </div>
@@ -653,6 +671,33 @@ function addData_disco(chart, dataS) {
 
     doc.save('tabla_productos.pdf');
 }
+
+function Excel() {
+  var tabla = document.getElementById('tablaProductos');
+  var filas = tabla.getElementsByTagName('tr');
+  var csvContent = "data:text/csv;charset=utf-8,";
+
+  for (let i = 0; i < filas.length; i++) {
+    var celdas = filas[i].getElementsByTagName('td');
+    var row = [];
+
+    for (let j = 0; j < celdas.length; j++) {
+      var text = celdas[j].innerText || celdas[j].textContent;
+      row.push(text);
+    }
+
+    csvContent += row.join(",") + "\n";
+  }
+
+  var encodedUri = encodeURI(csvContent);
+  var link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "tabla_productos.csv");
+  document.body.appendChild(link);
+  link.click();
+}
+
+
 
   </script>
   <script>

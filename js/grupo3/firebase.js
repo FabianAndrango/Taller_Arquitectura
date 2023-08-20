@@ -44,4 +44,30 @@ $(document).ready(function () {
 		];
 		table.rows.add([dataSet]).draw();
 	});
+	// Función para exportar a PDF
+    $("#exportPDF").on("click", function () {
+        var doc = new jsPDF();
+        doc.autoTable({
+            head: [["Fecha", "Hora", "CPU", "Memoria", "Disco", "RED"]],
+            body: getTableData(),
+        });
+        doc.save("tabla.pdf");
+    });
+
+    // Función para obtener los datos de la tabla
+    function getTableData() {
+        var data = [];
+        table.rows().every(function () {
+            var rowData = this.data();
+            data.push([
+                rowData[1], // Fecha
+                rowData[2], // Hora
+                rowData[3], // CPU
+                rowData[4], // Memoria
+                rowData[5], // Disco
+                rowData[6], // RED
+            ]);
+        });
+        return data;
+    }
 });

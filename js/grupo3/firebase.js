@@ -56,18 +56,35 @@ $(document).ready(function () {
 
 	//Funcion para exportar en Excel
 	$("#exportExcel").on("click", function () {
-        var wb = XLSX.utils.table_to_book(document.getElementById("tablaProductos"));
-        var wbout = XLSX.write(wb, { bookType: "xlsx", bookSST: true, type: "binary" });
-
-        function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        }
-
-        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "tabla.xlsx");
-    });
+		var wb = XLSX.utils.book_new(); // Crear un libro de trabajo vacío
+		var wsData = [ // Datos para la hoja de trabajo
+			["Fecha", "Hora", "CPU", "Memoria", "Disco", "RED"], // Encabezado
+		];
+	
+		// Llamada a la función getTableData() para obtener los datos de la tabla
+		var tableData = getTableData(); // Asumiendo que existe la función getTableData()
+	
+		// Agregar los datos de la tabla al arreglo wsData
+		wsData = wsData.concat(tableData);
+	
+		// Crear una hoja de trabajo y asignar los datos
+		var ws = XLSX.utils.aoa_to_sheet(wsData);
+		XLSX.utils.book_append_sheet(wb, ws, "Hoja1"); // Agregar la hoja de trabajo al libro
+	
+		// Generar el archivo Excel
+		var wbout = XLSX.write(wb, { bookType: "xlsx", bookSST: true, type: "binary" });
+	
+		function s2ab(s) {
+			var buf = new ArrayBuffer(s.length);
+			var view = new Uint8Array(buf);
+			for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+			return buf;
+		}
+	
+		// Descargar el archivo Excel
+		saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "tabla.xlsx");
+	});
+	
 	
 
     // Función para obtener los datos de la tabla

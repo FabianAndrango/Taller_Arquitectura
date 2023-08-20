@@ -68,7 +68,26 @@ $(document).ready(function () {
 
         saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "tabla.xlsx");
     });
-	
+
+	//Función para imprimir
+	$("#printPDF").on("click", function printPDF () {
+		var doc = new jsPDF();
+		doc.autoTable({
+		  head: [["Fecha", "Hora", "CPU", "Memoria", "Disco", "RED"]],
+		  body: getTableData(),
+		   
+		});
+	  
+		// Abre una nueva pestaña con el PDF generado
+		var pdfDataUri = doc.output("datauristring");
+		var newTab = window.open();
+		newTab.document.write('<iframe width="100%" height="100%" src="' + pdfDataUri + '"></iframe>');
+		
+		// Espera a que se cargue el PDF en la nueva pestaña y luego muestra la ventana de impresión
+		setTimeout(function() {
+			newTab.print();
+		}, 500);
+	  });
 
     // Función para obtener los datos de la tabla
     function getTableData() {

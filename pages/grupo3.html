@@ -57,6 +57,22 @@
     initMqtt();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <style>
+     /* Estilos para el botón de PDF */
+     button.pdf-button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+  </style>
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -374,7 +390,7 @@
                     </tbody>
                 </table>
             </div>
-            <button onclick="PDF()"><i class="fas fa-file-pdf"></i> Exportar a PDF</button>
+            <button class="pdf-button"  onclick="PDF()"><i class="fas fa-file-pdf"></i> Exportar a PDF</button>
             </div>
           </div>
         </div>  
